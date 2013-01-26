@@ -261,6 +261,7 @@ public class ComposeMessageActivity extends Activity
     private static final int MENU_ADD_TO_BLACKLIST      = 35;
     private static final int MENU_ADD_TO_CALENDAR       = 36;
     private static final int MENU_RESEND                = 37;
+    private static final int MENU_COPY_NUMBER           = 38;
 
     private static final int DIALOG_TEMPLATE_SELECT     = 1;
     private static final int DIALOG_TEMPLATE_NOT_AVAILABLE = 2;
@@ -1141,6 +1142,9 @@ public class ComposeMessageActivity extends Activity
                 menu.add(0, MENU_COPY_MESSAGE_TEXT, 0, R.string.copy_message_text)
                 .setOnMenuItemClickListener(l);
 
+                menu.add(0, MENU_COPY_NUMBER, 0, R.string.menu_copy_number)
+                .setOnMenuItemClickListener(l);
+
                 // Add SMS to calendar reminder
                 menu.add(0, MENU_ADD_TO_CALENDAR, 0, R.string.menu_add_to_calendar)
                         .setOnMenuItemClickListener(l);
@@ -1429,6 +1433,10 @@ public class ComposeMessageActivity extends Activity
 
                 case MENU_COPY_MESSAGE_TEXT:
                     copyToClipboard(mMsgItem.mBody);
+                    return true;
+
+                case MENU_COPY_NUMBER:
+                    copyToClipboard(getRecipients().get(0).getNumber());
                     return true;
 
                 case MENU_FORWARD_MESSAGE:
