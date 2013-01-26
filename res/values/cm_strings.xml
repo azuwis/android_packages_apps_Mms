@@ -131,6 +131,8 @@
     <string name="pref_title_mms_use_sent_timestamp">Original timestamps</string>
     <string name="pref_summary_mms_use_sent_timestamp">Display sent date instead of received date in timestamps</string>
 
+    <string name="menu_copy_number">Copy number</string>
+
     <!-- Soft keyboard type -->
     <string name="pref_title_input_type">Soft keyboard type</string>
     <string name="pref_keyboard_emoji">Show the Emoticons key</string>
