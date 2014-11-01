@@ -64,7 +64,6 @@ import android.widget.Toast;
 
 import com.android.internal.telephony.MSimConstants;
 import com.android.internal.telephony.TelephonyIntents;
-import com.android.internal.telephony.util.BlacklistUtils;
 import com.android.mms.LogTag;
 import com.android.mms.MmsConfig;
 import com.android.mms.R;
@@ -490,13 +489,7 @@ public class SmsReceiverService extends Service {
             long threadId = MessagingNotification.getSmsThreadId(this, messageUri);
             // Called off of the UI thread so ok to block.
             Log.d(TAG, "handleSmsReceived messageUri: " + messageUri + " threadId: " + threadId);
-            String address = msgs[0].getOriginatingAddress();
-            if (BlacklistUtils.isListed(getApplicationContext(), address, BlacklistUtils.BLOCK_MESSAGES) != 0) {
-                Log.d(TAG, "Blacklisted " + address);
-                MessagingNotification.blockingUpdateNewMessageIndicator(this, MessagingNotification.THREAD_NONE, false);
-            } else {
-                MessagingNotification.blockingUpdateNewMessageIndicator(this, threadId, false);
-            }
+            MessagingNotification.blockingUpdateNewMessageIndicator(this, threadId, false);
         }
     }
 
